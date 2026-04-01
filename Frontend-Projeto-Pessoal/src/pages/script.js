@@ -89,6 +89,7 @@ let produtos = [
         descricao: 'recuperação muscular'
     }
 ];
+
     function formatarPreco(valor, moedaPadrao="BRL"){
         const locale = navigator.language;
         return new Intl.NumberFormat(locale, {
@@ -97,48 +98,7 @@ let produtos = [
         }).format(valor);
     }
 
-    function capitalizeWords(text){
-        if (!text || typeof text !== 'string') return text;
-        return text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
-    }
-
-    const dropdownMarca = document.getElementById("dropdown-marca")
-
-  
-   const marcasUnicas = [...new Set(produtos.map(p => p.fabricante))];
-
-  
-    marcasUnicas.forEach((marca)=>{
-        const MarcaLi = document.createElement("li")
-        const MarcaA = document.createElement("a")
-        MarcaA.textContent=marca
-        MarcaLi.append(MarcaA)
-        dropdownMarca.appendChild(MarcaLi)
-
-    })  
-    const dropdownTipo = document.getElementById("dropdown-tipo")
-    const tiposUnicos= [... new Set(produtos.map(p=> p.tipo))];
-            tiposUnicos.forEach((tipo)=>{
-                const tipoLi = document.createElement("li")
-                const tipoA = document.createElement("a")
-                tipoA.textContent=tipo
-                tipoLi.appendChild(tipoA)
-                dropdownTipo.append(tipoLi)
-            })
-    
-    const dropdownObjetivo = document.getElementById("dropdown-objetivo")
-    const objetivosUnicos = [... new Set(produtos.map(p => p.objetivo))];
-            objetivosUnicos.forEach((objetivo)=>{
-                const objetivoA = document.createElement("a")
-                const objetivoLi = document.createElement("li")
-                const objetivoFormatado = capitalizeWords(objetivo)
-                objetivoA.textContent=objetivoFormatado
-                objetivoLi.appendChild(objetivoA)
-                dropdownObjetivo.appendChild(objetivoLi)
-            })
-
-    const produtosContainer = document.getElementById("produtos-container")
-    function mostrarProdutos(produtos){
+       function mostrarProdutos(produtos){
     produtos.forEach((produto) => {
         const card = document.createElement("div")
         card.classList.add("produto-card")
@@ -160,4 +120,88 @@ let produtos = [
 
     });
 }
+
+    function capitalizeWords(text){
+        if (!text || typeof text !== 'string') return text;
+        return text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    const dropdownMarca = document.getElementById("dropdown-marca")
+
+  
+   const marcasUnicas = [...new Set(produtos.map(p => p.fabricante))];
+ let marcasArray=[]
+    function marcaSelecionada(p){
+         marcasArray=[]
+         produtosContainer.innerHTML=""
+         produtos.forEach((item) =>{
+        if(item.fabricante === p){
+            
+            marcasArray.push(item)
+        }
+    })}
+  
+    marcasUnicas.forEach((marca)=>{
+        const MarcaLi = document.createElement("li")
+        const MarcaA = document.createElement("a")
+        MarcaA.textContent=marca
+        MarcaA.addEventListener("click", function(){
+            marcaSelecionada(marca)
+            mostrarProdutos(marcasArray)
+        })
+        MarcaLi.append(MarcaA)
+        dropdownMarca.appendChild(MarcaLi)
+
+    })  
+    const dropdownTipo = document.getElementById("dropdown-tipo")
+    const tiposUnicos= [... new Set(produtos.map(p=> p.tipo))];
+    let tiposArray=[]
+        function tipoSelecionado(p){
+            tiposArray=[]
+            produtosContainer.innerHTML=""
+            produtos.forEach((item)=>{
+                if(item.tipo === p){
+                    tiposArray.push(item)
+                }
+            })
+        }
+            tiposUnicos.forEach((tipo)=>{
+                const tipoLi = document.createElement("li")
+                const tipoA = document.createElement("a")
+                tipoA.textContent=tipo
+                tipoA.addEventListener("click", function(){
+                    tipoSelecionado(tipo)
+                    mostrarProdutos(tiposArray)
+                })
+                tipoLi.appendChild(tipoA)
+                dropdownTipo.append(tipoLi)
+            })
+    
+    const dropdownObjetivo = document.getElementById("dropdown-objetivo")
+    const objetivosUnicos = [... new Set(produtos.map(p => p.objetivo))];
+    let objetivosArray=[]
+    function objetivoSelecionado(p){
+        objetivosArray=[]
+        produtosContainer.innerHTML=""
+        produtos.forEach((item)=>{
+            if(item.objetivo === p){
+                tiposArray.push(item)
+            }
+        })
+    }
+            objetivosUnicos.forEach((objetivo)=>{
+                const objetivoA = document.createElement("a")
+                const objetivoLi = document.createElement("li")
+                const objetivoFormatado = capitalizeWords(objetivo)
+                objetivoA.textContent=objetivoFormatado
+                objetivoA.addEventListener("click", function(){
+                    objetivoSelecionado(objetivo)
+                    mostrarProdutos(objetivosArray)
+                })
+                objetivoLi.appendChild(objetivoA)
+                dropdownObjetivo.appendChild(objetivoLi)
+            })
+
+    const produtosContainer = document.getElementById("produtos-container")
+            
 mostrarProdutos(produtos)

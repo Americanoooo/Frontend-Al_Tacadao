@@ -1,3 +1,4 @@
 {
-    "github.copilot.renameSuggestions.triggerAutomatically": false
+    "github.copilot.renameSuggestions.triggerAutomatically": false,
+    "liveServer.settings.port": 5501
 }

@@ -25,12 +25,27 @@ object-fit: contain;
 .nav-div{
     display: flex;
    gap: 27px;
+   align-items: center;
+   justify-content: center;
+   
+   
 }
 .nav-div a{
+  display: flex;
+  flex-direction: column;
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
+    align-items: center;
+    width: auto;
+  white-space: nowrap;
+  }
+.nav-div img{
+  
+  width: 30px;
+  height: auto;
+  object-fit: contain;
 }
 /* nav estilo*/
 
@@ -88,6 +103,7 @@ object-fit: contain;
 }
 section{
   text-align: center;
+  margin-top: 20px;
 }
 .produtos-container{
   display: flex;
@@ -130,12 +146,43 @@ section{
 .produto-card p{
   color: #666;
 }
+footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+ padding-top: 30px;
+  margin-top: 80px;
+  gap: 30px;
+  width: 100%;
+  background-color: #2b2a2a;
+
+}
+.titulo-footer{
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.footer-categoria{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 12px;
+  font-size: 15px;
+}
+.footer-categoria a{
+    text-decoration: none;
+    color: white;
+}
 /*Produto*/
 @media (min-width: 768px) {
   nav{
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
-    padding: 0px 70px;
+    padding: 0px 15%;
   }
   .menu-nav{
   
@@ -209,6 +256,36 @@ section{
 }
 .produto-card p{
   color: #666;
+}
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+ padding-top: 30px;
+  margin-top: 80px;
+  gap: 80px;
+  width: 100%;
+  background-color: black;
+  height: 25vh;
+}
+.titulo-footer{
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.footer-categoria{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 15px;
+  font-size: 15px;
+}
+.footer-categoria a{
+    text-decoration: none;
+    color: white;
 }
   }/*PC*/
  
